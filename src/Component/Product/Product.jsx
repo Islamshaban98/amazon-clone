@@ -1,6 +1,21 @@
 import React from 'react'
+import { useStateValue } from '../../Context';
 import "./Product.css";
 function Product({id, title, img, price, rating}) {
+    const { dispatch} = useStateValue();
+    // dispatch the product  item in to context (data layer)
+    const addToBasket = ()=>{
+        dispatch({
+            type:"ADD_TO_BASKET",
+            payload:{
+                id:id,
+                title:title,
+                img:img,
+                price:price,
+                rating:rating
+            }
+        })
+    }
     return (
         <div className="product">
             <div className="product__info">
@@ -15,7 +30,7 @@ function Product({id, title, img, price, rating}) {
                 <img 
                     src={img}   alt="" 
                     className="product__img" />
-                    <button className="product__button">Add to basket</button>
+                    <button className="product__button" onClick={addToBasket}>Add to basket</button>
             </div>
         </div>
     )
