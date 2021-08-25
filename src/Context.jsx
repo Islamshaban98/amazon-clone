@@ -2,7 +2,8 @@ import React, {  useReducer, createContext, useContext } from 'react';
 
 const StateContext = createContext();
 export const initialState = {
-    basket:[]
+    basket:[],
+    user:null
 }
 
 const reducer = (state, action) =>{
@@ -18,15 +19,21 @@ const reducer = (state, action) =>{
                     );
                 let newBasket = [...state.basket];
                 
-                // if(index >= 0){
-                   newBasket.splice(index,1);
-                // } else{
+                // if(index > -1){
+                   newBasket.splice(index, 1);
+                // } 
+                // else{
                 //     console.log(`cant remove product (id: ${action.id})`)
                 // }
                 return{
                     ...state,
                     basket: newBasket
                 }
+        case 'SET_USER':
+            return{
+                ...state,
+                user:action.user
+            }
             
         default:
           return state;

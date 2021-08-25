@@ -8,7 +8,7 @@ function CheckoutProduct({id, title, img, price, rating}) {
 
         dispatch({
             type:"REMOVE_FROM_BASKET",
-            id:id,
+            id: id,
         })
     }
    

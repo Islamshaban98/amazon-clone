@@ -4,7 +4,7 @@ import CheckoutProduct from '../CheckoutProduct/CheckoutProduct';
 import Subtotal from '../Subtotal/Subtotal'
 import "./Checkout.css"
 function Checkout() {
-    const{ basket } = useStateValue().state;
+    const{ basket ,user} = useStateValue().state;
     console.log(basket)
     return (
         <div className="checkout">
@@ -14,6 +14,7 @@ function Checkout() {
                 alt=""
                 className="checkout__ad" /> 
             <div>
+                <h3>Hello, {user?.email}</h3>
                 <h2 className="checkout__title">
                     Shopping Basket
                 </h2>
