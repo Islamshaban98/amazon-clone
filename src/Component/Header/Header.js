@@ -28,6 +28,7 @@ function Header() {
             <div className="header header__nav">
                     <Link to ={!state.user&&"/signin"}>
                 <div className="header__option" onClick={handleAuth}>
+                    {/* user?.email|| 'Guest */}
                     <span className="header__option-1">{state.user? `hello ${state.user.email}`:'Hello guest'}</span>
                     <span className="header__option-2">
                          {state.user? "Sign out": "Sign in"}
