@@ -27,6 +27,7 @@ const history = useHistory()
         }
     }).catch(err =>{
         alert(err.message)
+        
     })
   }
   return (

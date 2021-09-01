@@ -6,7 +6,7 @@ import "./Payment.css";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import axios from "axios";
-
+import dp from "firebase"
 function Payment() {
   const { state, dispatch } = useStateValue();
   const history = useHistory();
@@ -47,9 +47,22 @@ console.log(clientSecret);
       })
       .then(({ paymentIntent }) => {
         // paymentIntent === paymentConfirmation || response.paymentIntent
+       dp
+       .collection("users")
+       .doc(state.user?.uid)
+       .doc('orders')
+       .doc(paymentIntent.id)
+       .set({
+         basket : state.basket,
+         amount:paymentIntent.amount,
+         created:paymentIntent.created
+       })
         setSucceeded(true);
         setError(null);
         setProcessing(false);
+        dispatch({
+          type:'EMPTY_BASKET'
+        })
         // replace not push in order to not go back to payment page
         history.replace("/orders");
       });
